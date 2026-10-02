@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Asavari Shejwal | Data & Analytics Engineer</title>
+<meta name="description" content="Asavari Shejwal, data and analytics engineer. dbt, Snowflake, Airflow, Databricks, Power BI. Projects, experience and writing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F9FB; --surface:#FFFFFF; --ink:#16212E; --muted:#5A6676;
+  --rule:#DDE3EA; --accent:#245F8F; --accent-soft:#E4EEF6; --node:#245F8F;
+  --sans:"Schibsted Grotesk", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1620; --surface:#151E2A; --ink:#E6ECF2; --muted:#9AA7B6;
+    --rule:#26323F; --accent:#7FB3DE; --accent-soft:#1B2A3A; --node:#7FB3DE;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1620; --surface:#151E2A; --ink:#E6ECF2; --muted:#9AA7B6;
+  --rule:#26323F; --accent:#7FB3DE; --accent-soft:#1B2A3A; --node:#7FB3DE;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 24px);scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+img{max-width:100%}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:300px minmax(0,1fr);gap:72px}
+aside{position:sticky;top:env(safe-area-inset-top,0px);align-self:start;padding:64px 0 40px;height:fit-content}
+main{padding:64px 0 96px;min-width:0}
+
+.name{font-size:2.6rem;line-height:1.02;font-weight:700;letter-spacing:-0.025em;margin:0}
+.role{margin:14px 0 0;font-size:1.05rem;color:var(--muted);max-width:30ch}
+.intro{margin:22px 0 0;font-size:.98rem;max-width:34ch}
+nav.toc{margin:36px 0 0;display:flex;flex-direction:column;gap:2px}
+nav.toc a{color:var(--muted);text-decoration:none;padding:6px 0 6px 14px;border-left:2px solid var(--rule);font-size:.95rem}
+nav.toc a:hover,nav.toc a.on{color:var(--ink);border-left-color:var(--accent)}
+.links{margin:36px 0 0;display:flex;flex-wrap:wrap;gap:8px 16px;font-size:.92rem}
+.avail{margin:28px 0 0;font-size:.88rem;color:var(--muted);display:flex;gap:8px;align-items:baseline}
+.avail::before{content:"";width:8px;height:8px;border-radius:50%;background:#2E9E6A;flex:none;transform:translateY(-1px)}
+
+section{padding-top:8px;margin-bottom:88px}
+h2{font-size:1.45rem;font-weight:600;letter-spacing:-0.01em;margin:0 0 6px}
+.sub{color:var(--muted);margin:0 0 32px;font-size:.98rem;max-width:62ch}
+
+/* Lead statement */
+.lead{font-family:var(--serif);font-size:clamp(1.6rem,3.2vw,2.25rem);line-height:1.28;font-weight:400;letter-spacing:-0.01em;margin:0 0 28px;max-width:28ch}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px 32px;border-top:1px solid var(--rule);padding-top:22px;margin:0}
+.facts div{font-size:.95rem}
+.facts dt{color:var(--muted);font-size:.85rem;margin-bottom:2px}
+.facts dd{margin:0}
+
+/* Lineage timeline: the signature element */
+.lineage{list-style:none;margin:0;padding:0;position:relative}
+.lineage::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:var(--rule)}
+.stage{position:relative;padding:0 0 44px 40px}
+.stage:last-child{padding-bottom:0}
+.stage::before{content:"";position:absolute;left:0;top:7px;width:16px;height:16px;border-radius:50%;background:var(--paper);border:2px solid var(--node)}
+.stage.current::before{background:var(--node)}
+.stage-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;align-items:baseline}
+.stage h3{margin:0;font-size:1.12rem;font-weight:600}
+.stage .org{color:var(--muted);font-weight:400}
+.when{color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stage ul{margin:12px 0 0;padding-left:18px;max-width:68ch}
+.stage li{margin:6px 0}
+.stage li::marker{color:var(--muted)}
+.num{font-weight:600;font-variant-numeric:tabular-nums}
+.stack{margin:12px 0 0;color:var(--muted);font-size:.88rem}
+
+/* Projects */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px}
+.filters button{font:inherit;font-size:.9rem;padding:7px 14px;border-radius:999px;border:1px solid var(--rule);background:transparent;color:var(--ink);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.proj-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.proj{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 24px;padding:22px 0;border-bottom:1px solid var(--rule)}
+.proj[hidden]{display:none}
+.proj h3{margin:0;font-size:1.06rem;font-weight:600}
+.proj p{margin:6px 0 0;max-width:64ch;font-size:.97rem}
+.proj .tools{grid-column:1;margin:8px 0 0;color:var(--muted);font-size:.87rem}
+.proj .acts{grid-column:2;grid-row:1 / span 3;display:flex;flex-direction:column;gap:6px;align-items:flex-end;font-size:.9rem;white-space:nowrap}
+.proj .date{color:var(--muted);font-size:.85rem;font-variant-numeric:tabular-nums}
+.badge{display:inline-block;font-size:.78rem;padding:2px 8px;border-radius:4px;background:var(--accent-soft);color:var(--accent);margin-left:8px;vertical-align:2px;font-weight:500}
+
+/* Writing */
+.posts{display:grid;gap:16px}
+.post{display:block;padding:22px 24px;border:1px solid var(--rule);border-radius:10px;background:var(--surface);text-decoration:none;color:var(--ink)}
+.post:hover{border-color:var(--accent)}
+.post h3{margin:0;font-family:var(--serif);font-size:1.3rem;font-weight:500;line-height:1.3}
+.post p{margin:8px 0 0;color:var(--muted);font-size:.95rem;max-width:62ch}
+.post .meta{margin-top:12px;font-size:.85rem;color:var(--accent)}
+
+/* Skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px 36px;margin:0}
+.skills dt{font-weight:600;font-size:.95rem;margin-bottom:6px}
+.skills dd{margin:0;color:var(--muted);font-size:.93rem}
+
+.edu{display:grid;gap:18px}
+.edu div{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;align-items:baseline}
+.edu strong{font-weight:600}
+.edu span{color:var(--muted);font-size:.92rem}
+
+.contact{background:var(--surface);border:1px solid var(--rule);border-radius:14px;padding:36px}
+.contact p{margin:0 0 22px;max-width:52ch}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:11px 20px;border-radius:8px;font-weight:500;text-decoration:none;font-size:.95rem}
+.btn.primary{background:var(--accent);color:var(--paper)}
+.btn.ghost{border:1px solid var(--rule);color:var(--ink)}
+.btn:hover{text-decoration:none;filter:brightness(1.06)}
+footer{color:var(--muted);font-size:.85rem;margin-top:48px}
+
+@media (max-width: 880px){
+  .wrap{grid-template-columns:1fr;gap:0}
+  aside{position:static;padding:44px 0 8px}
+  nav.toc{flex-direction:row;flex-wrap:wrap;gap:6px 18px}
+  nav.toc a{border-left:0;padding:4px 0;border-bottom:2px solid transparent}
+  nav.toc a.on,nav.toc a:hover{border-bottom-color:var(--accent)}
+  main{padding-top:40px}
+  .name{font-size:2.2rem}
+  .role,.intro{max-width:none}
+}
+@media (max-width: 560px){
+  .wrap{padding:0 20px}
+  .proj{grid-template-columns:1fr}
+  .proj .acts{grid-column:1;grid-row:auto;flex-direction:row;flex-wrap:wrap;gap:6px 16px;align-items:center;margin-top:10px}
+  .contact{padding:26px 22px}
+  section{margin-bottom:68px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <aside>
+    <h1 class="name">Asavari<br>Shejwal</h1>
+    <p class="role">Data and analytics engineer</p>
+    <p class="intro">I turn messy source data into tested models and pipelines that teams actually use for decisions.</p>
+    <nav class="toc" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#writing">Writing</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="links">
+      <a href="https://www.linkedin.com/in/asavari-shejwal-217b761aa/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/Asavari24" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://public.tableau.com/app/profile/asavari.shejwal/vizzes" target="_blank" rel="noopener">Tableau</a>
+      <a href="https://asavarishejwal.substack.com" target="_blank" rel="noopener">Substack</a>
+    </div>
+    <p class="avail">Open to full-time data roles. Boston area, open to relocation.</p>
+  </aside>
+
+  <main>
+    <section id="about" aria-labelledby="about-h">
+      <h2 id="about-h" class="visually-hidden" style="position:absolute;left:-9999px">About</h2>
+      <p class="lead">I migrate legacy SQL into tested dbt models, orchestrate the pipelines that feed them, and define the metrics that finance, supply chain and product teams report on.</p>
+      <dl class="facts">
+        <div><dt>Most recent</dt><dd>Data Analytics Engineer Co-op, Bose Corporation</dd></div>
+        <div><dt>Now</dt><dd>AI Data Engineer, Humanitarians AI</dd></div>
+        <div><dt>Education</dt><dd>MS Software Engineering Systems, Northeastern University, 2026</dd></div>
+      </dl>
+    </section>
+
+    <section id="experience" aria-labelledby="exp-h">
+      <h2 id="exp-h">Experience</h2>
+      <p class="sub">Most recent first.</p>
+      <ol class="lineage">
+        <li class="stage current">
+          <div class="stage-head"><h3>AI Data Engineer <span class="org">at Humanitarians AI</span></h3><span class="when">Jul 2026 – present</span></div>
+          <ul>
+            <li>Open-sourced an SEC financial statements pipeline and a filings metrics agent as contributions to the Mycroft project.</li>
+            <li>Documented the work in a three-part Substack series for other contributors.</li>
+          </ul>
+          <p class="stack">Airflow, dbt, Snowflake, FastAPI, Python</p>
+        </li>
+        <li class="stage">
+          <div class="stage-head"><h3>Data Analytics Engineer Co-op <span class="org">at Bose Corporation</span></h3><span class="when">Jul – Dec 2025</span></div>
+          <ul>
+            <li>Migrated legacy T-SQL into dbt models on Snowflake, reconciling outputs against the old results before cutover and adding unit tests through a PR-review workflow. Cut reporting latency by <span class="num">25%</span> and warehouse compute by <span class="num">20%</span>.</li>
+            <li>Defined KPI and metric logic in dbt used by finance, operations, planning, supply chain and product dashboards.</li>
+            <li>Built AWS Step Functions workflows coordinating Glue and Lambda jobs, maintained 8+ Airflow DAGs, and supported production on-call with root-cause analysis on failures.</li>
+            <li>Built a Streamlit freight analysis tool, still used by supply chain, that reduced costs by <span class="num">15%</span>.</li>
+            <li>Automated recurring workflows with Python and Power Automate, reducing manual effort by <span class="num">70%</span>.</li>
+          </ul>
+          <p class="stack">dbt, Snowflake, Airflow, AWS Glue, Lambda, Step Functions, S3, Microsoft Fabric, Streamlit, Python</p>
+        </li>
+        <li class="stage">
+          <div class="stage-head"><h3>Research Data Engineer <span class="org">at Northeastern University</span></h3><span class="when">Apr 2024 – Apr 2025</span></div>
+          <ul>
+            <li>Built data mappings and troubleshot integrations supporting <span class="num">10+</span> studies and <span class="num">200+</span> participants.</li>
+            <li>Built Power BI dashboards on Workday and HRIS reporting, analyzed Qualtrics faculty surveys, and presented findings to HR stakeholders.</li>
+          </ul>
+          <p class="stack">SQL, Python, Power BI, REDCap, Qualtrics</p>
+        </li>
+        <li class="stage">
+          <div class="stage-head"><h3>Data Engineer <span class="org">at NTT DATA, Mumbai</span></h3><span class="when">Jun 2022 – Dec 2023</span></div>
+          <ul>
+            <li>Authored Airflow DAGs for a banking client's data pipelines.</li>
+            <li>Supported Power BI reporting for the same client, authoring DAX measures and Power Query transformations.</li>
+            <li>Resolved support tickets and customer-facing data issues, including production incident triage.</li>
+          </ul>
+          <p class="stack">Airflow, SQL, Python, Power BI, DAX, Power Query</p>
+        </li>
+      </ol>
+    </section>
+
+    <section id="projects" aria-labelledby="proj-h">
+      <h2 id="proj-h">Projects</h2>
+      <p class="sub">Newest first. Code is public on GitHub unless noted.</p>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button type="button" data-f="all" aria-pressed="true">All</button>
+        <button type="button" data-f="de" aria-pressed="false">Data engineering</button>
+        <button type="button" data-f="an" aria-pressed="false">Analytics and BI</button>
+        <button type="button" data-f="ai" aria-pressed="false">AI and LLM</button>
+      </div>
+      <ul class="proj-list" id="projects-list">
+        <li class="proj" data-c="an de">
+          <div><h3>Olist marketplace analytics<span class="badge">New</span></h3>
+          <p>A tested dbt and DuckDB warehouse over ~100k Brazilian e-commerce orders, with a Python layer for the statistics SQL can't do. 23 dbt models, 13 invariant tests, 20 Python unit tests, and a coverage mart that counts every excluded row. Deployed on Modal.</p></div>
+          <p class="tools">dbt, DuckDB, Python, Modal</p>
+          <div class="acts"><span class="date">2026</span><a href="https://github.com/Asavari24/olist-marketplace-analytics" target="_blank" rel="noopener">Code</a></div>
+        </li>
+        <li class="proj" data-c="an de">
+          <div><h3>Diabetes quality measures on synthetic patients<span class="badge">New</span></h3>
+          <p>Four diabetes quality measures modeled on published NCQA measure descriptions, with value sets as dbt seeds, run charts and p-charts, and a written limitations section.</p></div>
+          <p class="tools">Synthea, DuckDB, dbt, Python, Tableau</p>
+          <div class="acts"><span class="date">2026</span><a href="https://github.com/Asavari24/diabetes-quality-measures-synthea" target="_blank" rel="noopener">Code</a></div>
+        </li>
+        <li class="proj" data-c="an">
+          <div><h3>Product A/B testing framework<span class="badge">New</span></h3>
+          <p>Experiment analysis on simulated data: power analysis, sample ratio mismatch detection, Welch's t-test, CUPED variance reduction, and an explicit ship or no-ship rule.</p></div>
+          <p class="tools">Python, SciPy, pandas</p>
+          <div class="acts"><span class="date">2026</span><a href="https://github.com/Asavari24/ab-testing-framework" target="_blank" rel="noopener">Code</a></div>
+        </li>
+        <li class="proj" data-c="de an">
+          <div><h3>Out-of-home audience measurement and attribution</h3>
+          <p>Audience measurement and attribution modeling for out-of-home advertising, combining dimensional modeling in dbt with H3-based geospatial analysis.</p></div>
+          <p class="tools">Snowflake, dbt, DuckDB, GeoPandas, H3</p>
+          <div class="acts"><span class="date">2026</span><a href="https://github.com/Asavari24/ooh-audience-measurement" target="_blank" rel="noopener">Code</a></div>
+        </li>
+        <li class="proj" data-c="ai de">
+          <div><h3>SEC filings financial metrics agent</h3>
+          <p>An open-source agent for financial metrics from SEC filings, contributed to Humanitarians AI's Mycroft project.</p></div>
+          <p class="tools">Python, LLM tooling, SEC EDGAR</p>
+          <div class="acts"><span class="date">2026</span><a href="https://asavarishejwal.substack.com" target="_blank" rel="noopener">Write-up</a></div>
+        </li>
+        <li class="proj" data-c="de an">
+          <div><h3>Multi-city business licensing BI platform</h3>
+          <p>A star schema over NYC, Chicago and DC licensing data, with facts and dimensions chosen to answer 10+ defined business questions, source-to-target lineage, and DQX data-quality checks.</p></div>
+          <p class="tools">Databricks, DQX, ER Studio, SQL</p>
+          <div class="acts"><a href="https://github.com/Asavari24/Multi-City-BI-Platform" target="_blank" rel="noopener">Code</a></div>
+        </li>
+        <li class="proj" data-c="de an">
+          <div><h3>Food inspection analytics platform</h3>
+          <p>A medallion lakehouse over ~387K Chicago and Dallas inspection records with SCD Type 2 history, job failure alerts, and Power BI reporting.</p></div>
+          <p class="tools">Databricks, Delta Lake, PySpark, Power BI</p>
+          <div class="acts"><a href="https://github.com/Asavari24/Food_Inspection_Analysis" target="_blank" rel="noopener">Code</a></div>
+        </li>
+        <li class="proj" data-c="de">
+          <div><h3>SEC financial statements ETL</h3>
+          <p>Airflow schedules SEC ingestion into S3, dbt builds tested tables in Snowflake, and FastAPI with Streamlit serves analyst queries. Raw staging kept for auditability.</p></div>
+          <p class="tools">Airflow, dbt, Snowflake, AWS S3, FastAPI, Streamlit</p>
+          <div class="acts"><a href="https://github.com/Asavari24/sec-financial-statements-pipeline" target="_blank" rel="noopener">Code</a></div>
+        </li>
+        <li class="proj" data-c="ai">
+          <div><h3>MiniManus multi-agent system</h3>
+          <p>A multi-agent system built with LangGraph, using Pinecone for retrieval and Snowflake for storage.</p></div>
+          <p class="tools">LangGraph, Pinecone, Snowflake</p>
+          <div class="acts"><a href="https://github.com/Asavari24/MiniManus" target="_blank" rel="noopener">Code</a></div>
+        </li>
+        <li class="proj" data-c="ai de">
+          <div><h3>NVIDIA quarterly reports RAG pipeline</h3>
+          <p>Airflow scrapes quarterly PDFs, multiple parsers tag quarter metadata, and hybrid retrieval filters by year and quarter for precise answers.</p></div>
+          <p class="tools">Airflow, Pinecone, OpenAI embeddings, FastAPI, Streamlit, Docker</p>
+          <div class="acts"><a href="https://github.com/Asavari24/LLM-Powered-Document-Intelligence-RAG-Pipeline-" target="_blank" rel="noopener">Code</a><a href="https://hishitathakkar.github.io/LLM-Powered-Document-Intelligence-RAG-Pipeline-/#0" target="_blank" rel="noopener">Codelab</a></div>
+        </li>
+        <li class="proj" data-c="ai">
+          <div><h3>PDF AI assistant</h3>
+          <p>Upload a PDF, then summarize it or ask questions across multiple LLMs, with Redis caching to cut repeat calls and per-model token cost estimates.</p></div>
+          <p class="tools">FastAPI, Streamlit, LiteLLM, Redis, AWS S3, Docker</p>
+          <div class="acts"><a href="https://github.com/Asavari24/BigDataAssignment4Part1" target="_blank" rel="noopener">Code</a></div>
+        </li>
+        <li class="proj" data-c="an ai">
+          <div><h3>Quantitative research on Netflix and streaming peers</h3>
+          <p>Combines FRED macro series and Fama-French factors with engineered price features, compares Random Forest, XGBoost and ARIMA with LASSO feature selection, and backtests buy-and-hold and long-short strategies.</p></div>
+          <p class="tools">Python, scikit-learn, XGBoost, statsmodels</p>
+          <div class="acts"><a href="https://github.com/Asavari24/AI-Powered-Quantitative-Trading-for-Netflix-and-Competitors" target="_blank" rel="noopener">Notebook</a></div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="writing" aria-labelledby="writing-h">
+      <h2 id="writing-h">Writing</h2>
+      <p class="sub">Product teardowns and build notes on Substack.</p>
+      <div class="posts">
+        <a class="post" href="https://asavarishejwal.substack.com" target="_blank" rel="noopener">
+          <h3>Disney+ Continue Watching: a product teardown</h3>
+          <p>A product teardown of the Continue Watching experience on Disney+.</p>
+          <p class="meta">September 2026</p>
+        </a>
+        <a class="post" href="https://asavarishejwal.substack.com" target="_blank" rel="noopener">
+          <h3>Building an SEC filings metrics agent, in three parts</h3>
+          <p>Three articles accompanying the open-source agent contributed to Humanitarians AI's Mycroft project.</p>
+          <p class="meta">2026 series</p>
+        </a>
+      </div>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-h">
+      <h2 id="skills-h">Skills</h2>
+      <p class="sub">Tools I've used in production or in the projects above.</p>
+      <dl class="skills">
+        <div><dt>Modeling and warehousing</dt><dd>dbt, Snowflake, Databricks, Delta Lake, DuckDB, SQL Server, PostgreSQL</dd></div>
+        <div><dt>Orchestration and cloud</dt><dd>Airflow, AWS Glue, Lambda, Step Functions, S3, Microsoft Fabric, Docker</dd></div>
+        <div><dt>Languages</dt><dd>SQL, T-SQL, Python, pandas, NumPy, PySpark, Bash</dd></div>
+        <div><dt>BI and analysis</dt><dd>Power BI, DAX, Power Query, Tableau, Streamlit, A/B testing</dd></div>
+        <div><dt>AI and LLM</dt><dd>RAG, LangGraph, Pinecone, LiteLLM, OpenAI APIs</dd></div>
+        <div><dt>Practices</dt><dd>Data quality testing, CI/CD, on-call and root-cause analysis, dimensional modeling</dd></div>
+      </dl>
+    </section>
+
+    <section aria-labelledby="edu-h">
+      <h2 id="edu-h">Education and leadership</h2>
+      <p class="sub">&nbsp;</p>
+      <div class="edu">
+        <div><strong>MS, Software Engineering Systems, Northeastern University</strong><span>May 2026</span></div>
+        <div><strong>BE, Computer Science, University of Mumbai</strong><span>May 2023</span></div>
+        <div><strong>Director of Initiatives, Graduate Women Coders</strong><span>Feb 2024 – Jul 2025</span></div>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-h">
+      <div class="contact">
+        <h2 id="contact-h">Let's talk</h2>
+        <p>I'm looking for data engineering, analytics engineering and BI roles. The fastest way to reach me is email.</p>
+        <div class="btns">
+          <a class="btn primary" href="mailto:shejwal.a@northeastern.edu">Email me</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/asavari-shejwal-217b761aa/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+        </div>
+      </div>
+      <footer>© 2026 Asavari Shejwal</footer>
+    </section>
+  </main>
+</div>
+<script>
+(function(){
+  var btns=document.querySelectorAll('.filters button');
+  var items=document.querySelectorAll('#projects-list .proj');
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      var f=b.getAttribute('data-f');
+      btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+      items.forEach(function(it){
+        var cats=(it.getAttribute('data-c')||'').split(' ');
+        it.hidden=!(f==='all'||cats.indexOf(f)>-1);
+      });
+    });
+  });
+  var links=document.querySelectorAll('nav.toc a');
+  if('IntersectionObserver' in window){
+    var map={};links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a});
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting&&map[e.target.id]){
+          links.forEach(function(a){a.classList.remove('on')});
+          map[e.target.id].classList.add('on');
+        }
+      });
+    },{rootMargin:'-40% 0px -55% 0px'});
+    Object.keys(map).forEach(function(id){var s=document.getElementById(id);if(s)io.observe(s)});
+  }
+})();
+</script>
+</body>
+</html>
